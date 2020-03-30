@@ -1,0 +1,311 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="https://firebasestorage.googleapis.com/v0/b/my-project-1544342477588.appspot.com/o/logo.png?alt=media&token=7c136e4e-c666-41f3-8381-91579de62d84" sizes="32x32" type="image/png">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <title>Splash-Personal Dashboard</title>
+    <style>
+    body{
+        margin: auto;
+        padding: 0%;
+    }
+
+    #main
+    {
+        width: 100%;
+        height: 100vh;
+        background-image: url('https://source.unsplash.com/1600x900/?beach') no-repeat;
+       visibility: visible;
+       background-size: cover;
+    }
+
+    #logo
+    {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        top: 45px;
+        left: 50px;
+        border-radius: 50%;
+        background-image: url('https://firebasestorage.googleapis.com/v0/b/my-project-1544342477588.appspot.com/o/logo.png?alt=media&token=7c136e4e-c666-41f3-8381-91579de62d84');
+        background-size: cover;
+        background-position: center;
+
+
+    }
+
+   
+
+    #about
+    {
+        color: #ffffff;
+        font-family: 'roboto';
+        position: absolute;
+        top:55px;
+        left: 150px;
+        cursor: pointer;
+    }
+
+    #download
+    {
+        width: 314px;
+        height: 82px;
+        background-color: #ffffff;
+        border-radius: 67px;
+        float: right;
+        margin: 20px auto;
+        transform: scale(.5);
+        font-size: 25px;
+        cursor: pointer;
+    }
+
+    .time
+    {
+        width: 100%;
+        height: 200px;
+        background:transparent;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+    }
+    .time #clock
+    {
+font-size: 4em;
+color: #ffffff;
+text-align: center;
+margin: 10px auto;
+font-family: 'Roboto';
+    }
+
+    .intro
+    {
+        width: 100%;
+        height: 100px;
+        background-color:transparent;
+        position: absolute;
+        top: 65%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        font-family: 'arial','Roboto';
+        font-size: 2em;
+        color: #ffffff;
+       
+    }
+
+    .time h4
+    {
+        margin: 10px auto;
+        
+    }
+
+    #quote
+    {
+        width: 100%;
+        height: 50px;
+        background-color:transparent;
+        position: absolute;
+        top: 85%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-align: center;
+        font-family: 'arial';
+        color: #ffffff;
+
+    }
+
+    #about_page
+    {
+        width: 100%;
+        height: 100vh;
+        background-color: #000000;
+        visibility: hidden;
+
+    }
+
+    @media (min-width: 320px) and (max-width: 480px) {
+#download
+{
+    position: absolute;
+    top:20%;
+    left:50%;
+    transform: translate(-50%,-50%) scale(.8);
+
+}
+
+.intro
+{
+    
+    font-size: 1em;
+
+}
+
+
+
+
+}
+
+
+@media (min-width: 450px) and (max-width: 500px) {
+#download
+{
+    position: absolute;
+    top:20%;
+    left:50%;
+    transform: translate(-50%,-50%) scale(.8);
+
+}
+
+.intro
+{
+    
+    font-size: 1em;
+
+}
+
+
+
+
+
+
+}
+
+
+    </style>
+</head>
+<body>
+    <div id="main">
+
+        <div id="logo">
+
+        </div>
+        <span id="about"><a href="" style="text-decoration: none;color: #ffffff;">Splash</a></span>
+
+        <button id="download">Download from <i class="fa fa-github"></i></button>
+
+        <div class="time">
+            <h2 id="clock">12:45</h2>
+        </div>
+        <div class="intro">
+            <h4 id="intros">Daily inspiration on your new tab page.</h4>
+        </div>
+
+        <div id="quote">
+            <p></p>
+        </div>
+
+    </div>
+
+    
+
+    
+
+    <script
+    src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+    crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11"></script>
+        <script>
+
+            $(document).ready(function()
+            {
+
+            function genQuote()
+                                {
+                                $.ajax({
+                                url:'https://api.quotable.io/random',
+                                type:'GET',
+                                success:function(data)
+                                {
+                                console.log(data);
+                                $('#quote').html('<p>'+'"'+data['content']+'-by '+data['author']+'"'+'</p>');
+                                
+                                },error:function(e)
+                                {
+                                console.log(e);
+                                }
+                                })
+                                }
+
+
+                                //call genrate quote function
+
+                                genQuote();
+
+
+                                
+
+
+                                //change background dynamically
+
+                                function getNewBackground(ImageType)
+                                            {
+
+                                            
+
+                                            //change backgroundImage start from here
+
+                                            $('#main').css('background-image','url(https://source.unsplash.com/1600x900/?'+ImageType+')');
+                                            //backgroundImage ends from here
+                                        
+                                            }
+
+                                            var myList = ['taj mahal','google','apple','girls','mountains','mercedes benz','rivers','water','boys','dark','cars','fish','delhi','new york','black','cat','baby','dogs','roses',
+'flowers','blossoms','usa','india','bangalore','night','morning','noon','evening','rainy','snow','thunderstorm','beach','flight'];
+                                                var randomNo = Math.floor(Math.random()*(0,myList.length-1));
+
+
+                                            getNewBackground(myList[randomNo]);
+
+
+
+
+                                            //Typed js
+
+
+                                            var typed = new Typed('#intros', {
+                                            strings: ['Get Daily Inspirational', 'on your New Tab','Current City Weather Forcast','Background Choices Avialable'],
+                                            backSpeed:200,
+                                            typeSpped:200,
+                                            fadeOut:true,
+                                            loop:true
+                                            });
+
+                                            $('#download').on('click',function()
+                                            {
+                                            window.location='https://github.com/pythonKiller990/UNSPLASH-V1.3';
+                                            });
+
+
+                                            //clock
+
+                                            function clock()
+                                            {
+                                                var day=new Date();
+                                                var h=day.getHours();
+                                                
+                                                var m=day.getMinutes();
+
+                                                if(m<10)
+                                                {
+                                                    m='0'+m;
+                                                }
+                                                day.getMinutes();$('#clock').text(h+':'+m);
+                                            }
+                                            setInterval(clock,1000);
+
+            });
+        
+        </script>
+
+
+
+</body>
+</html>
